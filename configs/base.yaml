@@ -1,0 +1,33 @@
+app:
+  name: quant-market-intelligence-dashboard-demo
+  environment: local
+
+services_layer:
+  version: v1
+
+  inputs:
+    features_dir: data/features
+    targets_dir: data/targets
+    normalized_bars_dir: data/normalized
+    benchmark_forecasts_dir: artifacts/evaluations/benchmark_forecasts
+    ml_forecasts_dir: artifacts/evaluations/ml_forecasts
+    model_comparison_dir: artifacts/evaluations/model_comparison
+    confusion_matrices_dir: artifacts/evaluations/model_comparison/confusion_matrices
+    decision_dir: artifacts/evaluations/decision
+    structural_breaks_dir: artifacts/evaluations/structural_breaks
+
+  defaults:
+    latest_break_events_limit: 10
+    preferred_decision_summary_file: all_symbols_decision_summary_v1.parquet
+    preferred_decision_reasons_file: all_symbols_decision_reasons_v1.parquet
+
+dashboard_local:
+  version: v1
+
+  app:
+    title: Quant Market Intelligence
+    layout: wide
+    sidebar_state: expanded
+
+  defaults:
+    symbol: SPY
